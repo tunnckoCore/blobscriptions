@@ -17,9 +17,11 @@ export { trackBlobscriptions, pluginBlob20, pluginBlobCreation };
  */
 
 export async function blobscriptions(handlers, options = {}) {
+  const opts = { blob20: true, ...options };
+
   await trackBlobscriptions(async (payload) => {
     payload = await pluginBlobCreation(payload);
-    payload = await pluginBlob20(payload);
+    payload = opts.blob20 ? await pluginBlob20(payload) : payload;
 
     console.log('payload tx:', payload.transaction.hash, payload.block.number);
 
