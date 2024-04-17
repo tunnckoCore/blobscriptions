@@ -22,7 +22,10 @@ export type {
  * @param options - optional options object, passed to trackBlobscriptions function
  */
 
-export async function blobscriptions(handlers, options?: TrackBlobsOptions & { blob20?: boolean }) {
+export async function blobscriptions(
+  handlers: any | any[],
+  options?: TrackBlobsOptions & { blob20?: boolean },
+) {
   const opts = { blob20: true, ...options };
 
   await trackBlobscriptions(async (payload) => {

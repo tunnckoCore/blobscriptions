@@ -11,7 +11,7 @@ import { blobscriptions } from './index.ts';
 blobscriptions(
   [
     'https://webhook.site/fef05c0e-9770-45c4-9284-50875f416f25',
-    (payload) => {
+    (payload: any) => {
       console.log('indexing server received payload:', payload);
     },
   ],

@@ -1,5 +1,5 @@
 {
-  // "deno.enable": true,
+  "deno.enable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.fixAll.eslint": true,
@@ -38,5 +38,5 @@
     "javascript": true,
     "python": true
   },
-  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

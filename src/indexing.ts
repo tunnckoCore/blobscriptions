@@ -6,9 +6,11 @@ import {
   hexToBytes,
   http,
   stringToHex,
+  type Chain,
   type Transaction,
   type TransactionBase,
   type TransactionEIP4844,
+  type Transport,
 } from 'npm:viem';
 import { mainnet } from 'npm:viem/chains';
 
@@ -26,7 +28,10 @@ export async function trackBlobscriptions(handler: HandlerFn, options?: TrackBlo
     ...(options || {}),
   };
 
-  const client = createPublicClient({ chain: opts.chain, transport: opts.transport });
+  const client = createPublicClient({
+    chain: opts.chain as Chain,
+    transport: opts.transport as Transport,
+  });
 
   client.watchBlocks({
     emitMissed: true,

@@ -76,7 +76,7 @@ export function toBytes(x: any) {
   return x instanceof Uint8Array ? x : viemToBytes(x);
 }
 
-export function tryUngzip(data) {
+export function tryUngzip(data: any) {
   const u8data = toBytes(data);
 
   let decompressedContentU8: Uint8Array | null = null;
