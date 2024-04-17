@@ -14,9 +14,9 @@ import {
 } from 'viem';
 import { mainnet } from 'viem/chains';
 
-import type { BlobscriptionCreationAttachment, HandlerFn, TrackBlobsOptions } from '@/types.ts';
+import type { HandlerFn, TrackBlobsOptions } from '@/types.ts';
 
-export type { BlobscriptionCreationAttachment, HandlerFn, TrackBlobsOptions };
+export * from '@/types.ts';
 
 export async function trackBlobscriptions(handler: HandlerFn, options?: TrackBlobsOptions) {
   const opts = {
