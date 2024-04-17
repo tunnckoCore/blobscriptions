@@ -12,7 +12,7 @@ For the BLOB-20 specification, see the [blob20](./blob20.md) file.
 ## Install and use
 
 **This package is written entirely in TypeScript AND published on NPM as TypeScript.** So better
-install and use a sane runtime like [Bun](htts://bun.sh) or [Deno](https://deno.com) to be able to
+install and use a sane runtime like [Bun](https://bun.sh) or [Deno](https://deno.com) to be able to
 just run the TypeScript files directly. I just don't deal with Node.js tooling anymore, in the
 future i will add a build step to compile the TypeScript files to JavaScript, but that's for now.
 
