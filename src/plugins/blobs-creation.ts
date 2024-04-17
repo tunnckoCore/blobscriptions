@@ -1,9 +1,9 @@
-import { decode as decodeCbor } from 'cborg';
-import { gunzipSync } from 'fflate';
-import pMapSeries from 'p-map-series';
-import { fromBlobs, sha256, toBytes as viemToBytes } from 'viem';
+import { decode as decodeCbor } from 'npm:cborg';
+import { gunzipSync } from 'npm:fflate';
+import pMapSeries from 'npm:p-map-series';
+import { fromBlobs, sha256, toBytes as viemToBytes } from 'npm:viem';
 
-import type { BlobscriptionCreationAttachment, TxPayload } from '@/types.ts';
+import type { BlobscriptionCreationAttachment, TxPayload } from '../types.ts';
 
 /**
  * Plugin to process and validate a transaction payload is valid and compliant

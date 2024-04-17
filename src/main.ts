@@ -1,4 +1,6 @@
-import { blobscriptions } from '@/index.ts';
+import { Hono } from 'npm:hono';
+
+import { blobscriptions } from './index.ts';
 
 /**
  * This file is the entry point for the indexing server, run on something like Fly.io servers.
@@ -17,3 +19,14 @@ blobscriptions(
 ).catch((e) => {
   console.error('Failure in blobscriptions handling...', e);
 });
+
+const app = new Hono();
+
+app.get('/', async (c) =>
+  c.json({
+    message:
+      'Hello, blob world! For more info, visit https://github.com/tunnckocore/blobscriptions repository.',
+  }),
+);
+
+Deno.serve({ port: 3000 }, app.fetch);

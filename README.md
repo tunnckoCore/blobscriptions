@@ -90,7 +90,7 @@ type TrackBlobsOptions = {
 };
 ```
 
-## Deployment
+## Deployment (advanced)
 
 You can deploy this package to a server, like a VPS, and run it as a service. The way to do that is
 easy and require only few steps.
@@ -111,6 +111,19 @@ platform without problem.
 **NOTE:** You cannot use a serverless platform like Vercel or Netlify, because they are serverless
 and the indexing process require an always-online server that listen on the Ethereum network. In the
 serverless platforms, the server is not always online, it is only online when a request is made.
+
+## Deploy to Fly
+
+- Register account on Fly.io, add a card to be able to use the free $5 credit
+- Install the Fly CLI
+- Run `fly login` and login with your account
+- Run `fly deploy` and answer the first question with `y` (yes, to copy the config from the repo)
+- Done!
+
+This will deploy the indexing to Fly.io using Deno runtime and a basic server with hello world
+response is on https://blobscriptions.fly.dev. The Deno runtime is the reason why most imports in
+the project use `npm:` prefix. The `npm:` prefix is a way to tell Deno to fetch the module from NPM
+registry.
 
 ## Webhooks
 

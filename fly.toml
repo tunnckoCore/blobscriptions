@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for blobscriptions-mainnet-indexer on 2024-03-27T11:14:21+02:00
+# fly.toml app configuration file generated for blobscriptions on 2024-04-18T01:45:43+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'blobscriptions-mainnet-indexer'
+app = 'blobscriptions'
 primary_region = 'ams'
 
 [build]

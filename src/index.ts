@@ -1,8 +1,8 @@
-import { bytesToHex, bytesToString, stringify } from 'viem';
+import { bytesToHex, bytesToString, stringify } from 'npm:viem';
 
-import { trackBlobscriptions, type TrackBlobsOptions } from '@/indexing.ts';
-import pluginBlob20 from '@/plugins/blob20';
-import pluginBlobCreation from '@/plugins/blobs-creation';
+import { trackBlobscriptions, type TrackBlobsOptions } from './indexing.ts';
+import pluginBlob20 from './plugins/blob20.ts';
+import pluginBlobCreation from './plugins/blobs-creation.ts';
 
 export { trackBlobscriptions, pluginBlob20, pluginBlobCreation };
 export type {
@@ -10,7 +10,7 @@ export type {
   HandlerFn,
   BlobscriptionCreationAttachment,
   TrackBlobsOptions,
-} from '@/types.ts';
+} from './types.ts';
 
 /**
  * This function is a simple wrapper around the `trackBlobscriptions` function, which

@@ -1,6 +1,6 @@
-import { bytesToString, stringToBytes } from 'viem';
+import { bytesToString } from 'npm:viem';
 
-import type { TxPayload } from '@/types.ts';
+import type { TxPayload } from '../types.ts';
 
 /**
  * Plugin to process, normalize and validate a payload is correct and compliant BLOB-20 token

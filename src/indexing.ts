@@ -1,7 +1,5 @@
-import 'dotenv/config';
-
-import { gunzipSync } from 'fflate';
-import pMapSeries from 'p-map-series';
+import { gunzipSync } from 'npm:fflate';
+import pMapSeries from 'npm:p-map-series';
 import {
   bytesToString,
   createPublicClient,
@@ -11,12 +9,12 @@ import {
   type Transaction,
   type TransactionBase,
   type TransactionEIP4844,
-} from 'viem';
-import { mainnet } from 'viem/chains';
+} from 'npm:viem';
+import { mainnet } from 'npm:viem/chains';
 
-import type { HandlerFn, TrackBlobsOptions } from '@/types.ts';
+import type { HandlerFn, TrackBlobsOptions } from './types.ts';
 
-export * from '@/types.ts';
+export * from './types.ts';
 
 export async function trackBlobscriptions(handler: HandlerFn, options?: TrackBlobsOptions) {
   const opts = {
