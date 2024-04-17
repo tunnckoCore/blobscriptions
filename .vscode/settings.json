@@ -1,0 +1,42 @@
+{
+  // "deno.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.prettier": true
+  },
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false,
+    "files.insertFinalNewline": false
+  },
+  "[solidity]": {
+    "editor.defaultFormatter": "NomicFoundation.hardhat-solidity"
+  },
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "off"
+  },
+  "explorer.excludeGitIgnore": false,
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": true,
+    "javascript": true,
+    "python": true
+  },
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "exclude": ["node_modules", "dist"],
+  "include": ["**/*.ts"],
+  "extends": ["eslint-config-tunnckocore/tsconfig.json"],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "~db": ["./src/db/index.ts"],
+    },
+  },
+}

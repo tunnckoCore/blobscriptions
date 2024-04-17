@@ -1,0 +1,27 @@
+{
+  "name": "blob20",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "tunnckoCore",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "eslint": "8.57.0",
+    "eslint-config-tunnckocore": "4.0.0",
+    "prettier": "3.2.5",
+    "prettier-eslint": "16.3.0",
+    "typescript": "5.4.5"
+  },
+  "dependencies": {
+    "cborg": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "fflate": "^0.8.2",
+    "p-map": "^7.0.2",
+    "p-map-series": "^3.0.0",
+    "viem": "^2.9.20"
+  }
+}
