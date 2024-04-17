@@ -9,7 +9,7 @@ export type TrackBlobsOptions = {
 };
 
 export type TxPayload = {
-  transaction: Omit<TransactionBase & TransactionEIP4844, 'accessList'>;
+  transaction: TransactionBase & Omit<TransactionEIP4844, 'accessList'>;
   block: Pick<
     Block,
     | 'timestamp'
