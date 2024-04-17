@@ -91,10 +91,16 @@ In case you want to receive the payload as a webhook, you can use pass a URL str
 function, or you can provide both a function and a URL string to send the payload to the URL as well
 as to the function.
 
+You can run it locally and try it with some Webhook service like https://webhook.site
+
 ```typescript
-blobscriptions('https://your-webhook-url.com', (payload: TxPayload) => {
-  console.log('payload:', payload);
-});
+blobscriptions([
+  'https://your-webhook-url.com',
+  'https://webhook.site/0e4b8206-94a8-4c95-adf6-fea310c03e06',
+  (payload: TxPayload) => {
+    console.log('payload:', payload);
+  },
+]);
 ```
 
 The webhook data that this POST request handler will receive is a JSON object with the following
