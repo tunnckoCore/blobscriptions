@@ -5,6 +5,11 @@ import { fromBlobs, sha256, toBytes as viemToBytes } from 'viem';
 
 import type { BlobscriptionCreationAttachment, TxPayload } from '@/types.ts';
 
+/**
+ * Plugin to process and validate a transaction payload is valid and compliant
+ * to the Ethscriptions ESIP-8 specification.
+ */
+
 export default async function pluginBlobCreation(payload: TxPayload) {
   const { attachment } = (await processBlobs({ ...payload })) as TxPayload & {
     attachment: BlobscriptionCreationAttachment;
