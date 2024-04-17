@@ -12,7 +12,7 @@ import {
   type TransactionBase,
   type TransactionEIP4844,
 } from 'viem';
-import { sepolia } from 'viem/chains';
+import { mainnet } from 'viem/chains';
 
 import type { BlobscriptionCreationAttachment, HandlerFn, TrackBlobsOptions } from '@/types.ts';
 
@@ -21,9 +21,9 @@ export type { BlobscriptionCreationAttachment, HandlerFn, TrackBlobsOptions };
 export async function trackBlobscriptions(handler: HandlerFn, options?: TrackBlobsOptions) {
   const opts = {
     logging: false,
-    trimInput: true,
+    trimCalldataInput: true,
     onlyBlobscriptions: true,
-    chain: sepolia,
+    chain: mainnet,
     transport: http('https://1rpc.io/eth'),
     ...(options || {}),
   };
@@ -78,7 +78,7 @@ export async function trackBlobscriptions(handler: HandlerFn, options?: TrackBlo
         blobTxs as any,
         async (blobTx: Transaction & TransactionBase & TransactionEIP4844) => {
           // @ts-ignore bruh
-          blobTx.input = opts.trimInput ? blobTx.input.slice(0, 200) : blobTx.input;
+          blobTx.input = opts.trimCalldataInput ? blobTx.input.slice(0, 200) : blobTx.input;
 
           const txn = { ...blobTx };
 

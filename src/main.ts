@@ -1,10 +1,17 @@
-import { trackBlobscriptions } from '@/indexing.ts';
-import pluginBlob20 from './plugins/blob20';
-import pluginBlobCreation from './plugins/blobs-creation';
+import { blobscriptions } from '@/index.ts';
 
-trackBlobscriptions(async (payload) => {
-  payload = await pluginBlobCreation(payload);
-  payload = await pluginBlob20(payload);
+/**
+ * This file is the entry point for the indexing server, run on something like Fly.io servers.
+ * It uses the `blobscriptions` function to handle incoming payloads from the blockchain,
+ * and then sends them to the provided webhook URLs, or calls the provided functions.
+ */
 
-  console.log('payload:', payload);
+blobscriptions([
+  'https://some-webhook-url.com/foo',
+  (payload) => {
+    console.log('indexing server received payload:', payload);
+  },
+  'https://some-other-webhook-receiver.com',
+]).catch((e) => {
+  console.error('Failure in blobscriptions handling...', e);
 });
