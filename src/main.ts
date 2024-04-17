@@ -8,11 +8,10 @@ import { blobscriptions } from '@/index.ts';
 
 blobscriptions(
   [
-    'https://some-webhook-url.com/foo',
+    'https://webhook.site/fef05c0e-9770-45c4-9284-50875f416f25',
     (payload) => {
       console.log('indexing server received payload:', payload);
     },
-    'https://webhook.site/0e4b8206-94a8-4c95-adf6-fea310c03e06',
   ],
   { logging: true },
 ).catch((e) => {

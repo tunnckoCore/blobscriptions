@@ -41,27 +41,35 @@ export async function blobscriptions(handlers, options?: TrackBlobsOptions & { b
     await Promise.all(
       webhooks.map(async (hook) => {
         if (typeof hook === 'function') {
-          await hook(payload);
+          try {
+            await hook(payload);
+          } catch (e) {
+            console.log('failure in payload handler:', e);
+          }
         }
 
         if (typeof hook === 'string' && hook.startsWith('http')) {
-          const att = payload.attachment
-            ? {
-                content: bytesToHex(payload.attachment.content as Uint8Array),
-                contentType: bytesToString(payload.attachment.contentType as Uint8Array),
-                sha: payload.attachment.sha,
-              }
-            : null;
+          try {
+            const att = payload.attachment
+              ? {
+                  content: bytesToHex(payload.attachment.content as Uint8Array),
+                  contentType: bytesToString(payload.attachment.contentType as Uint8Array),
+                  sha: payload.attachment.sha,
+                }
+              : null;
 
-          fetch(hook, {
-            method: 'POST',
-            body: stringify({
-              type: 'BLOBSCRIPTIONS',
-              timestamp: Date.now(),
-              payload: { ...payload, attachment: att },
-            }),
-            headers: { 'content-type': 'application/json' },
-          });
+            fetch(hook, {
+              method: 'POST',
+              body: stringify({
+                type: 'BLOBSCRIPTIONS',
+                timestamp: Date.now(),
+                payload: { ...payload, attachment: att },
+              }),
+              headers: { 'content-type': 'application/json' },
+            });
+          } catch (e) {
+            console.log('failed to send webhook:', hook, e);
+          }
         }
       }),
     );
