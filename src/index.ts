@@ -1,6 +1,6 @@
 import { bytesToHex, bytesToString, stringify } from 'viem';
 
-import { trackBlobscriptions } from '@/indexing.ts';
+import { trackBlobscriptions, type TrackBlobsOptions } from '@/indexing.ts';
 import pluginBlob20 from '@/plugins/blob20';
 import pluginBlobCreation from '@/plugins/blobs-creation';
 
@@ -22,7 +22,7 @@ export type {
  * @param options - optional options object, passed to trackBlobscriptions function
  */
 
-export async function blobscriptions(handlers, options = {}) {
+export async function blobscriptions(handlers, options?: TrackBlobsOptions & { blob20?: boolean }) {
   const opts = { blob20: true, ...options };
 
   await trackBlobscriptions(async (payload) => {

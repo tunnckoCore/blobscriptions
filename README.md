@@ -11,6 +11,11 @@ For the BLOB-20 specification, see the [blob20](./blob20.md) file.
 
 ## Install and use
 
+**This package is written entirely in TypeScript AND published on NPM as TypeScript.** So better
+install and use a sane runtime like [Bun](htts://bun.sh) or [Deno](https://deno.com) to be able to
+just run the TypeScript files directly. I just don't deal with Node.js tooling anymore, in the
+future i will add a build step to compile the TypeScript files to JavaScript, but that's for now.
+
 To use as a library, you can install it via npm:
 
 ```
@@ -40,7 +45,7 @@ blobscriptions((payload: TxPayload) => {
 });
 ```
 
-## Payload
+### Payload and types
 
 The payload is an object with the following structure:
 
@@ -84,6 +89,28 @@ type TrackBlobsOptions = {
   logging?: boolean; // false
 };
 ```
+
+## Deployment
+
+You can deploy this package to a server, like a VPS, and run it as a service. The way to do that is
+easy and require only few steps.
+
+- Register for an account on a cloud provider like Digital Ocean, or Fly.io
+  - i recommend [Fly.io](https://fly.io) because it is fast, cheap, and easy
+- Tweak the `./src/main.ts` as you like, eg. add Webhook URL or payload handler function
+- Create a project / machine on provider, and instruct it to run the `./src/main.ts` file
+- Done!
+
+I will provide a one-click deploy soon. For now, you can just follow the steps above.
+
+In this repository there is also a Dockerfile and Fly.tom configuration file, so you can deploy it
+to Fly.io easily. This Fly config is using Bun to run the `src/main.ts` file which in my case is
+just sending me the payload to another service where i can handle it - this can be on serverless
+platform without problem.
+
+**NOTE:** You cannot use a serverless platform like Vercel or Netlify, because they are serverless
+and the indexing process require an always-online server that listen on the Ethereum network. In the
+serverless platforms, the server is not always online, it is only online when a request is made.
 
 ## Webhooks
 
