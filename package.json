@@ -1,6 +1,6 @@
 {
   "name": "blobscriptions",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "license": "GPL-3.0-only",
   "description": "Ethscriptions ESIP-8 implementation in JavaScript/TypeScript, also called Blobscriptions which is using Ethereum Blob Transactions to create Ethscriptions. The package includes a CLI to create and manage blobscriptions, as well as a library to track/index blobscriptions and BLOB-20 tokens. It is built with plugins architecture for easier development.",
   "author": "tunnckoCore",

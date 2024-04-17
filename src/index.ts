@@ -5,6 +5,12 @@ import pluginBlob20 from '@/plugins/blob20';
 import pluginBlobCreation from '@/plugins/blobs-creation';
 
 export { trackBlobscriptions, pluginBlob20, pluginBlobCreation };
+export type {
+  TxPayload,
+  HandlerFn,
+  BlobscriptionCreationAttachment,
+  TrackBlobsOptions,
+} from '@/types.ts';
 
 /**
  * This function is a simple wrapper around the `trackBlobscriptions` function, which

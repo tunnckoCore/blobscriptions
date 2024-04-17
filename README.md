@@ -19,8 +19,8 @@ npm i blobscriptions
 
 And then import it in your project:
 
-```ts
-import { blobscriptions } from 'blobscriptions';
+```typescript
+import { blobscriptions, type TxPayload } from 'blobscriptions';
 
 const options = { logging: true, blob20: true };
 
@@ -44,7 +44,7 @@ blobscriptions((payload: TxPayload) => {
 
 The payload is an object with the following structure:
 
-```ts
+```typescript
 import type { Block, Chain, TransactionBase, TransactionEIP4844, Transport } from 'viem';
 
 type TxPayload = {
@@ -84,3 +84,30 @@ type TrackBlobsOptions = {
   logging?: boolean; // false
 };
 ```
+
+## Webhooks
+
+In case you want to receive the payload as a webhook, you can use pass a URL string instead of a
+function, or you can provide both a function and a URL string to send the payload to the URL as well
+as to the function.
+
+```typescript
+blobscriptions('https://your-webhook-url.com', (payload: TxPayload) => {
+  console.log('payload:', payload);
+});
+```
+
+The webhook data that this POST request handler will receive is a JSON object with the following
+structure:
+
+```typescript
+type WebhookPayload = {
+  type: 'BLOBSCRIPTIONS';
+  timestamp: number; // timestamp, javascript Date.now()
+  payload: TxPayload;
+};
+```
+
+## CLI
+
+to be documented and implemented
