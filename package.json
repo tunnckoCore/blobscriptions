@@ -10,15 +10,20 @@
     "test": "echo foobar"
   },
   "dependencies": {
+    "@xata.io/cli": "0.0.0-next.v6c6f3e997e189d06c76a84446f25edcd856f01b8",
+    "@xata.io/client": "0.0.0-next.v6c6f3e997e189d06c76a84446f25edcd856f01b8",
     "cborg": "^4.2.0",
     "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.8",
     "fflate": "^0.8.2",
     "hono": "^4.2.4",
     "p-map": "^7.0.2",
     "p-map-series": "^3.0.0",
+    "pg": "^8.11.5",
     "viem": "2.9.20"
   },
   "devDependencies": {
+    "drizzle-kit": "^0.20.14",
     "eslint": "8.57.0",
     "eslint-config-tunnckocore": "4.0.0",
     "prettier": "3.2.5",

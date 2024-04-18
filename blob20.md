@@ -163,6 +163,16 @@ simple, efficient, and scalable. It uses the account-balance model.
 Here are the detailed indexing rules that should be followed:
 
 - Every BLOB-20 inscription must be valid Blobscription (ESIP-8), otherwise it's ignored
+- Token ticker cannot be empty or null, it must be alphanumeric only, no length limit
+- There is an empty named ticker already deployed, but that is practically unsusable
+- Trim/cleanup all whitespaces from all string values before processing, including from the
+  `content` of the blobscriptions
+  - some editors and lanugage encodings add invisible characters and whitespaces, such as zero-width
+    space, non-breaking space, UTF-8-BOM and so on
+  - Programming languages like JavaScript and Ruby are handling it well, but seems like Go's
+    standard library for parsing and processing JSON is struggling to process a `content` if it
+    starts with UTF-8-BOM
+  - So, in short: cleanup
 - Must have `content` and `contentType` fields inside a CBOR-encoded object.
 - The `contentType` field must be a string, either `application/json` or `text/plain`
 - The `content` field must be a valid and parseable JSON object (not json string, or JSON5)

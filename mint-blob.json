@@ -1,0 +1,8 @@
+{
+  "protocol": "blob20",
+  "token": {
+    "operation": "mint",
+    "ticker": "BLOB",
+    "amount": 1000
+  }
+}

@@ -47,6 +47,7 @@ const xata = getXataClient();
 // record written: 0x1affd32bc6007b36672e370e028109c2f0821a52a93ddf7410180371c5ab7859 rec_cogir7lv0a9tjgrc48s0
 // record written: 0x240d195b9e01f3e009af197cb87645619418f54fd2fc6225997d2f39d7877971 rec_cogir7mnih5frtv77q5g
 // record written: 0x54cf3fd2344e291238bf0cd5cfa3fbb96610b7e1fe7951d0d2ca334e75602595 rec_cogir7h3gmbil69h1vvg
+// 19587513 - latest page key - 0x567282246edfff9731c0ba1f19ba43677ed65f75ea3317b02eacf6f86fa9c701
 
 function genUrlParams(sha?: string) {
   return new URLSearchParams(
@@ -55,9 +56,9 @@ function genUrlParams(sha?: string) {
       &attachment_present=true
       &attachment_content_type[]=text/plain
       &attachment_content_type[]=application/json
-      &after_block=19526125
+       &after_block=19679000
+      &before_block=19700001
       &max_results=15
-      &page_key=0x7e71faa679a850cffd0cf0bc4d227e9bd2b1f1d74100a426fcc3cbc20c0f87f7
     `
       .trim()
       .split('\n')
@@ -99,8 +100,8 @@ async function fetchAllTransactions(data: any, handler: any) {
   await pMap(
     data.result,
     async (x: any, idx: number) => {
-      if (idx % 20 === 0) {
-        await new Promise((r) => setTimeout(r, 1_100));
+      if (idx % 15 === 0) {
+        await new Promise((r) => setTimeout(r, 1_500));
       }
 
       console.log('tx:', x.transaction_hash, x.block_number);
@@ -137,9 +138,9 @@ const maxPerMintMap = {
 };
 
 async function txHandler(x: any) {
-  if (Number(x.block_number) > 19650000) {
-    return true;
-  }
+  // if (Number(x.block_number) > 19680000) {
+  //   return true;
+  // }
 
   x.attachment_content_type = x.attachment_content_type.toLowerCase();
   if (
@@ -157,6 +158,10 @@ async function txHandler(x: any) {
 
       if (attachment.protocol === 'blob20' && attachment.token) {
         attachment.token.ticker = attachment.token?.ticker?.toLowerCase();
+
+        if (!attachment.token.ticker) {
+          return;
+        }
 
         console.log(
           'token:',
@@ -213,7 +218,7 @@ async function txHandler(x: any) {
         return ret;
       }
     } catch (e) {
-      console.log('cannot parse attachment content:', x.transaction_index, e);
+      console.log('cannot parse attachment content:', x.transaction_hash, x.transaction_index, e);
     }
   }
 
@@ -225,14 +230,17 @@ async function main() {
   let pageKey;
   let data;
 
-  data = await fetchPage(searchParams);
+  data = await fetchPage(
+    searchParams,
+    // '0x567282246edfff9731c0ba1f19ba43677ed65f75ea3317b02eacf6f86fa9c701',
+  );
   fetchAllTransactions(data, txHandler);
 
   while (data.pagination.has_more) {
     pageKey = data.pagination.page_key;
     data = await fetchPage(searchParams, pageKey);
 
-    fetchAllTransactions(data, txHandler);
+    await fetchAllTransactions(data, txHandler);
     // const done = await fetchAllTransactions(data, txHandler);
     // if (done) {
     //   break;
