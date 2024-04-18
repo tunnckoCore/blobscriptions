@@ -47,6 +47,9 @@ app.get('/tokens/wgw', async (c: Context) => {
 
     // @ts-ignore bruh
     result.mints = addressMints;
+  } else {
+    // @ts-ignore bruh
+    result.mints = mints;
   }
 
   return c.json(result);
