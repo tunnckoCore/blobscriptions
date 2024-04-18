@@ -1,0 +1,17 @@
+{
+  "protocol": "blob20",
+  "token": {
+    "operation": "transfer",
+    "ticker": "BLOB",
+    "transfers": [
+      {
+        "to": "0xa20c07f94a127fd76e61fbea1019cce759225002",
+        "amount": 5.57308
+      },
+      {
+        "to": "0x3e7a28d96f19b65676F4309531418a03039Ee5b5",
+        "amount": 3
+      }
+    ]
+  }
+}

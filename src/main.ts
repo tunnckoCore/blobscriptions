@@ -1,4 +1,4 @@
-import { Hono } from 'npm:hono';
+import { Context, Hono } from 'npm:hono';
 
 import { blobscriptions } from './index.ts';
 
@@ -28,5 +28,28 @@ app.get('/', async (c) =>
       'Hello, blob world! For more info, visit https://github.com/tunnckocore/blobscriptions repository.',
   }),
 );
+
+app.get('/tokens/wgw', async (c: Context) => {
+  const address = c.req.query('address')?.toLowerCase();
+  const wgwData = await import('../wgw-final-mints.js').then((x) => x.default);
+
+  const { mints, ...data } = wgwData;
+  const result = { ...data };
+
+  if (address && address.length === 42 && address.startsWith('0x')) {
+    const addressMints = mints.filter((x: any) => x.to_address === address);
+
+    // @ts-ignore bruh
+    result.total_address_balance = addressMints.reduce(
+      (acc: number, x: any) => acc + x.token_amount,
+      0,
+    );
+
+    // @ts-ignore bruh
+    result.mints = addressMints;
+  }
+
+  return c.json(result);
+});
 
 Deno.serve({ port: 3000 }, app.fetch);
