@@ -2,8 +2,9 @@
 // ?reverse=true&max_results=1000&transaction_hash_only=true&attachment_present=true&attachment_content_type[]=application/json&attachment_content_type[]=text/plain
 
 // block 19526126 is the first block with a valid blob20 operation transaction - the $BLOBBED token deploy op
-// block 19526198 is the block with last mint op of $BLOB token
+// block 19526198 is the block with FIRST mint op of $BLOB token
 // block 19576966 is the block with last mint op of $BLOB token
+//       19576840
 // block 19565268 is the block with last mint op of $BLOBBED
 // block 19526617 is the block with FIRST $WGW token (0x2d6f706109fac8431799bfc1f44da842fcb8076f0e51a4b3a6058c5ba31d10d3)
 // block 19577001 is to have extra room and faster api query times

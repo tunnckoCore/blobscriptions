@@ -1,0 +1,173 @@
+{
+  "id": "mig_cogif2m6fopstmtchsj0",
+  "checksum": "1:35f442e2a06d8ce2ee5e1b2cb29839348b1c8ef45bdc0c5b750ce4cbaee5ad3c",
+  "operations": [
+    {
+      "addTable": {
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "block_number",
+          "type": "int"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "block_hash",
+          "type": "string"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "block_timestamp",
+          "type": "int"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "transaction_hash",
+          "type": "string"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "transaction_index",
+          "type": "int"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "transaction_fee",
+          "type": "int"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "transaction_burnt_fee",
+          "type": "int"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "from_address",
+          "type": "string"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "to_address",
+          "type": "string"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "is_valid",
+          "type": "bool"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "operation",
+          "type": "string"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "ticker",
+          "type": "string"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "amount",
+          "type": "float"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "attachment_sha",
+          "type": "string"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "attachment_content_type",
+          "type": "string"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "gas_price",
+          "type": "int"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "gas_used",
+          "type": "int"
+        },
+        "table": "blob20_transactions"
+      }
+    },
+    {
+      "addColumn": {
+        "column": {
+          "name": "timestamp",
+          "type": "datetime"
+        },
+        "table": "blob20_transactions"
+      }
+    }
+  ]
+}

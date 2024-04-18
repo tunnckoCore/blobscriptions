@@ -1,0 +1,16 @@
+{
+  "id": "mig_cogifuo0j6r1cfostm80",
+  "parentID": "mig_cogif2m6fopstmtchsj0",
+  "checksum": "1:0edf8a8bd9c7f4c59528f081a797480932fc2a7a3aa46689cafd9a680ae11e1d",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "blob20",
+          "type": "json"
+        },
+        "table": "blob20_transactions"
+      }
+    }
+  ]
+}
