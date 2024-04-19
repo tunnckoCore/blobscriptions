@@ -173,6 +173,10 @@ Here are the detailed indexing rules that should be followed:
     standard library for parsing and processing JSON is struggling to process a `content` if it
     starts with UTF-8-BOM
   - So, in short: cleanup
+  - in JavaScript, you still should cleanup the `content` before processing, because the JSON parser
+    is not strict and will not throw an error if there are invisible characters
+  - In JavaScript you can use some RegExp like
+    `/^[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*$/gi`
 - Must have `content` and `contentType` fields inside a CBOR-encoded object.
 - The `contentType` field must be a string, either `application/json` or `text/plain`
 - The `content` field must be a valid and parseable JSON object (not json string, or JSON5)

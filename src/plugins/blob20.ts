@@ -36,7 +36,7 @@ export default async function pluginBlob20(payload: TxPayload) {
           payload.attachment.content as Uint8Array,
         ).toLowerCase();
 
-        const content = JSON.parse(attachmentContent);
+        const content = JSON.parse(attachmentContent.replace(/[\s\w\r\n\t ]*/gi, ''));
 
         if (content && content.protocol && content.protocol === 'blob20') {
           if (content.token.ticker.length > 0) {
