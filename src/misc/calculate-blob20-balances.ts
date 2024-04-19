@@ -151,7 +151,9 @@ async function txHandler(metadata: any) {
   // currentBlock = metadata.block_number;
 
   try {
-    const attachment = JSON.parse(result.toLowerCase());
+    const attachment = JSON.parse(
+      result.replace(/^[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*$/gi, '').toLowerCase(),
+    );
 
     if (
       table.supply < 70_000 &&

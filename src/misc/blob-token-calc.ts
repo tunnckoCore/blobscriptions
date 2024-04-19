@@ -154,7 +154,11 @@ async function txHandler(x: any) {
     let ret;
 
     try {
-      const attachment = JSON.parse(attachmentContentStr.toLowerCase());
+      const attachment = JSON.parse(
+        attachmentContentStr
+          .replace(/^[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*$/gi, '')
+          .toLowerCase(),
+      );
 
       if (attachment.protocol === 'blob20' && attachment.token) {
         attachment.token.ticker = attachment.token?.ticker?.toLowerCase();
