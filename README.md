@@ -1,11 +1,15 @@
 # blobscriptions
 
-> A command-line interface, a library, and a set of tools to manage and manipulate blobscriptions.
+> Stateless Blobscriptions indexer, implementing
+> [Ethscriptions ESIP-8](https://docs.ethscriptions.com/esips/esip-8-ethscription-attachments-aka-blobscriptions)
+> in JavaScript/TypeScript. A command-line interface, a library, and a set of tools to manage and
+> work with blobscriptions.
 
 _This is a "state-less" indexer. No storage is provided or anything like that. It does not write
-what it index and detect. It's main purpose is to be minimal library and indexer server you can
-deploy, and this will notify a third party through Webhooks, or you can build on top through payload
-handler functions instead of Webhook URLs_
+what it index and detect. Its main purpose is to be minimal library and indexer server you can
+deploy, and this will notify a third party (still you) through Webhooks (some other serverless
+service you have), or you can build directly on top through providing payload handler functions
+instead of Webhook URLs to the expose `blobscriptions` function from the library._
 
 Ethscriptions ESIP-8 implementation in JavaScript/TypeScript, also called Blobscriptions which is
 using Ethereum Blob Transactions to create Ethscriptions. The package includes a CLI to create and
