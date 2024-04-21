@@ -2,6 +2,11 @@
 
 > A command-line interface, a library, and a set of tools to manage and manipulate blobscriptions.
 
+_This is a "state-less" indexer. No storage is provided or anything like that. It does not write
+what it index and detect. It's main purpose is to be minimal library and indexer server you can
+deploy, and this will notify a third party through Webhooks, or you can build on top through payload
+handler functions instead of Webhook URLs_
+
 Ethscriptions ESIP-8 implementation in JavaScript/TypeScript, also called Blobscriptions which is
 using Ethereum Blob Transactions to create Ethscriptions. The package includes a CLI to create and
 manage blobscriptions, as well as a library to track/index blobscriptions and BLOB-20 tokens. It is
