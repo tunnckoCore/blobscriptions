@@ -16,8 +16,6 @@ import { mainnet } from 'npm:viem/chains';
 
 import type { HandlerFn, TrackBlobsOptions } from './types.ts';
 
-export * from './types.ts';
-
 export async function trackBlobscriptions(handler: HandlerFn, options?: TrackBlobsOptions) {
   const opts = {
     logging: false,

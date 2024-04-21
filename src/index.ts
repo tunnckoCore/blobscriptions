@@ -1,16 +1,14 @@
 import { bytesToHex, bytesToString, stringify } from 'npm:viem';
 
-import { trackBlobscriptions, type TrackBlobsOptions } from './indexing.ts';
+import { trackBlobscriptions } from './indexing.ts';
 import pluginBlob20 from './plugins/blob20.ts';
 import pluginBlobCreation from './plugins/blobs-creation.ts';
+import type { TrackBlobsOptions } from './types.ts';
+
+export * from 'viem';
+export * from './types.ts';
 
 export { trackBlobscriptions, pluginBlob20, pluginBlobCreation };
-export type {
-  TxPayload,
-  HandlerFn,
-  BlobscriptionCreationAttachment,
-  TrackBlobsOptions,
-} from './types.ts';
 
 /**
  * This function is a simple wrapper around the `trackBlobscriptions` function, which
@@ -77,4 +75,83 @@ export async function blobscriptions(
       }),
     );
   }, options);
+}
+
+export async function dbBlob20PayloadHandler(payload: any) {
+  const maxPerMintMap = {
+    blobbed: 10000,
+    blob: 1000,
+    wgw: 100,
+  };
+
+  console.log('indexing server received payload:', payload);
+
+  let data;
+
+  try {
+    const attachmentContentStr = bytesToString(payload.attachment.content);
+    const attachment = JSON.parse(
+      attachmentContentStr
+        .replace(/^[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*$/gi, '')
+        .toLowerCase(),
+    );
+
+    if (attachment.protocol === 'blob20' && attachment.token) {
+      if (!attachment.token.ticker) {
+        return;
+      }
+
+      attachment.token.ticker = attachment.token.ticker.toLowerCase();
+
+      data = {
+        block_number: Number(payload.block.number),
+        block_hash: payload.block.hash,
+        block_timestamp: Number(payload.block.timestamp),
+        transaction_hash: payload.transaction.hash,
+        transaction_index: Number(payload.transaction.transactionIndex),
+        transaction_fee: 0, // todo
+        transaction_burnt_fee: 0, // todo
+        transaction_value: Number(payload.transaction.value),
+        from_address: payload.transaction.from,
+        to_address: payload.transaction.to,
+        is_valid: true,
+        operation: attachment.token.operation,
+        ticker: attachment.token.ticker,
+        amount: Number(attachment.token.amount || 0),
+        attachment_sha: payload.attachment.sha,
+        attachment_content_type: bytesToString(payload.attachment.contentType),
+        gas_price: Number(payload.transaction.gas_price),
+        gas_used: 0, // todo
+        timestamp: new Date(Number(payload.block.timestamp) * 1000).toISOString(),
+        blob20: stringify(attachment),
+      };
+
+      // @ts-ignore bruh
+      const maxPerMint = maxPerMintMap[attachment.token.ticker];
+
+      if (attachment.token.operation === 'mint' && attachment.token.amount > maxPerMint) {
+        console.log('max per mint exceeded:', attachment.token.amount, maxPerMint);
+        data.is_valid = false;
+      } else if (attachment.token.operation === 'mint') {
+        console.log(
+          'mint success',
+          payload.transaction.hash,
+          attachment.token?.amount,
+          attachment.token?.ticker,
+        );
+      }
+    }
+  } catch (e) {
+    console.log('indexing failed to parse:', payload.transaction.hash, e);
+  }
+
+  if (!data) {
+    console.log('failure to parse or handle tx:', payload.transaction.hash);
+    return { error: 'failure to parse or handle tx', payload };
+  }
+
+  console.log('normalized data:', data);
+  // await writeToXata(data);
+
+  return { data, payload };
 }
