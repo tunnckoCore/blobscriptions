@@ -6,6 +6,7 @@ import { bytesToString, stringify } from 'npm:viem';
 import { blobscriptions } from './index.ts';
 
 const webhooksList = ['https://webhook.site/fef05c0e-9770-45c4-9284-50875f416f25'];
+const handlersList = [dbPayloadHandler];
 
 /**
  * This file is the entry point for the indexing server, run on something like Fly.io servers.
@@ -103,6 +104,7 @@ async function dbPayloadHandler(payload: any) {
     return;
   }
 
+  console.log('normalized data:', data);
   // await writeToXata(data);
 }
 
