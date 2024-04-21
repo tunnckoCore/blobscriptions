@@ -13,7 +13,7 @@ const handlersList = [dbBlob20PayloadHandler];
  * and then sends them to the provided webhook URLs, or calls the provided functions.
  */
 
-blobscriptions(webhooksList, { logging: true }).catch((e) => {
+blobscriptions([...webhooksList, ...handlersList], { logging: true }).catch((e) => {
   console.error('Failure in blobscriptions handling...', e);
 });
 
