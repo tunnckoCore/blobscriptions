@@ -1,7 +1,0 @@
-{
-  "databaseURL": "https://Charlike-Mike-Reagent-s-workspace-s3arm9.eu-central-1.xata.sh/db/blobbed_blob20",
-  "codegen": {
-    "output": "src/xata.ts",
-    "moduleType": "deno"
-  }
-}

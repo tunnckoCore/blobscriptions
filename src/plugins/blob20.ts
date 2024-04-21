@@ -36,6 +36,7 @@ export default async function pluginBlob20(payload: TxPayload) {
           payload.attachment.content as Uint8Array,
         ).toLowerCase();
 
+        // cleanup UTF-8 BOM and other whitespace characters
         const content = JSON.parse(
           attachmentContent.replace(/^[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*|[\uFEFF\r\n\t]*$/gi, ''),
         );
